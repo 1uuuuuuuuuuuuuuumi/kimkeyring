@@ -1,7 +1,10 @@
+import { useNavigate } from "react-router-dom"
 import Header from "../components/Header"
 import ProductCard from "../components/ProductCard"
 
 function Home() {
+  const navigate = useNavigate()
+
   // 가짜 데이터 (나중에 API로 교체!)
   const products = [
     {id: 1, name: '곰돌이 키링', price: 12000, emoji: '🧸'},
@@ -23,7 +26,13 @@ function Home() {
           gap: '24px'
         }}>
           {products.map(product => (
-            <ProductCard key={product.id} product={product} />
+            <div
+              key={product.id}
+              onClick={() => navigate(`/product/${product.id}`)}
+              style={{cursor: 'pointer'}}
+            >
+              <ProductCard product={product} />
+            </div>
           ))}
         </div>
       </main>
