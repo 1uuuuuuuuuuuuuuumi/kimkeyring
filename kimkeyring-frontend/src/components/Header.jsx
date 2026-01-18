@@ -1,4 +1,8 @@
+import { useNavigate } from "react-router-dom";
+
 function Header() {
+  const navigate = useNavigate();
+
   return (
     <header style={{
       padding: '20px',
@@ -14,13 +18,15 @@ function Header() {
         style={{height: '60px', cursor: 'pointer'}}
       />
       <nav>
-        <button style={{marginLeft: '10px', padding: '8px 16px'}}>
+        <button style={{marginLeft: '10px', padding: '8px 16px', cursor: 'pointer'}}>
           전체 상품
         </button>
-        <button style={{marginLeft: '10px', padding: '8px 16px'}}>
-          장바구니
+        <button
+          onClick={() => navigate('/cart')}
+          style={{marginLeft: '10px', padding: '8px 16px', cursor: 'pointer'}}>
+            장바구니
         </button>
-        <button style={{marginLeft: '10px', padding: '8px 16px'}}>
+        <button style={{marginLeft: '10px', padding: '8px 16px', cursor: 'pointer'}}>
           로그인
         </button>
       </nav>
