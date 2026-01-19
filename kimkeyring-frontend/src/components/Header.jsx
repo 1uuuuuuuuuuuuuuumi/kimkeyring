@@ -1,7 +1,9 @@
 import { useNavigate } from "react-router-dom";
+import { useCart } from "../context/CartContext";
 
 function Header() {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
+  const {totalItems} = useCart()
 
   return (
     <header style={{
@@ -15,6 +17,7 @@ function Header() {
       <img 
         src="/logo.png"
         alt="김키링이의서랍"
+        onClick={() => navigate('/')}
         style={{height: '60px', cursor: 'pointer'}}
       />
       <nav>
@@ -24,7 +27,7 @@ function Header() {
         <button
           onClick={() => navigate('/cart')}
           style={{marginLeft: '10px', padding: '8px 16px', cursor: 'pointer'}}>
-            장바구니
+            장바구니 {totalItems > 0 && `(${totalItems})`}
         </button>
         <button style={{marginLeft: '10px', padding: '8px 16px', cursor: 'pointer'}}>
           로그인

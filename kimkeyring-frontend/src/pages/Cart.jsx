@@ -1,33 +1,10 @@
-import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import Header from "../components/Header"
+import { useCart } from "../context/CartContext"
 
 function Cart() {
   const navigate = useNavigate()
-
-  // 장바구니 상품 더미 데이터
-  const [cartItems, setCartItems] = useState([
-    {id: 1, name: '곰돌이 키링', price: 12000, emoji: '🧸', quantity: 1},
-    {id: 3, name: '하트 키링', price: 8000, emoji: '💖', quantity: 2},
-  ])
-
-  // 상품 삭제
-  const removeItem = (id) => {
-    setCartItems(cartItems.filter(item => item.id !== id))
-  }
-
-  // 수량 변경
-  const updateQuantity = (id, newQuantity) => {
-    if(newQuantity < 1) return
-    setCartItems(cartItems.map(item =>
-      item.id === id ? {...item, quantity: newQuantity} : item
-    ))
-  }
-
-  // 총 금액 계산
-  const totalAmount = cartItems.reduce((sum, item) =>
-    sum + (item.price * item.quantity), 0
-  )
+  const {cartItems, removeFromCart, updateQuantity, totalAmount} = useCart()
 
   return (
     <div>
@@ -135,7 +112,7 @@ function Cart() {
 
                 {/* 삭제 버튼 */}
                 <button
-                  onClick={() => removeItem(item.id)}
+                  onClick={() => removeFromCart(item.id)}
                   style={{
                     padding: '8px 16px',
                     border: '1px solid #ddd',

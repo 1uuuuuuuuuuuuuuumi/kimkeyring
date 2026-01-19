@@ -1,9 +1,11 @@
 import { useParams, useNavigate } from "react-router-dom";
 import Header from '../components/Header'
+import { useCart } from "../context/CartContext";
 
 function ProductDetail()  {
   const {id} = useParams() // URL에서 상품ID 가져오기
   const navigate = useNavigate()
+  const {addToCart} = useCart()
 
   // 더미 상품 데이터
   const products = [
@@ -82,7 +84,10 @@ function ProductDetail()  {
               gap: '12px'
             }}>
               <button
-                onClick={() => alert('장바구니 기능은 준비중입니다!')}
+                onClick={() => {
+                  addToCart(product)
+                  alert('장바구니에 담았습니다!')
+                }}
                 style={{
                   flex: 1,
                   padding: '16px',
