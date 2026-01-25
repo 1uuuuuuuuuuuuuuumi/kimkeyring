@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import Header from '../components/Header'
 import { useCart } from "../context/CartContext";
+import Footer from "../components/Footer";
 
 function ProductDetail()  {
   const {id} = useParams() // URL에서 상품ID 가져오기
@@ -123,6 +124,7 @@ function ProductDetail()  {
           </div>
         </div>
       </main>
+      <Footer />
     </div>
   )
 }

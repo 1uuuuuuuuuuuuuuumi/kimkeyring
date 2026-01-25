@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import Header from "../components/Header"
 import { useCart } from "../context/CartContext"
+import Footer from "../components/Footer"
 
 function Cart() {
   const navigate = useNavigate()
@@ -169,6 +170,7 @@ function Cart() {
           </>
         )}
       </main>
+      <Footer />
     </div>
   )
 }

@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import Header from "../components/Header"
 import ProductCard from "../components/ProductCard"
+import Footer from "../components/Footer"
 
 function Home() {
   const navigate = useNavigate()
@@ -36,6 +37,7 @@ function Home() {
           ))}
         </div>
       </main>
+      <Footer />
     </div>
   )
 }
