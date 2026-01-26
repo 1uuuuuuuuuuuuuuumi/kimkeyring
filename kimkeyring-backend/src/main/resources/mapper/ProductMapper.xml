@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mtbatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kimkeyring.mapper.ProductMapper">
+
+    <!-- 전체 상품 조회 -->
+    <select id="findAll" resultType="com.kimkeyring.entity.Product">
+        SELECT
+            product_id AS productId,
+            name,
+            description,
+            price,
+            stock,
+            image_url AS imageUrl,
+            created_at AS createdAt
+        FROM products
+        ORDER BY created_at DESC
+    </select>
+
+</mapper>
