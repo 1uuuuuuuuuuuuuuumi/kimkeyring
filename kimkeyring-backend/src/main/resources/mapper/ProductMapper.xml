@@ -18,4 +18,42 @@
         ORDER BY created_at DESC
     </select>
 
+    <!-- 상품 ID로 조회 -->
+    <select id="fintById" resultType="com.kimkeyring.entity.Product">
+        SELECT
+            product_id AS productId,
+            name,
+            description,
+            price,
+            stock,
+            image_url AS imageUrl,
+            created_at AS createdAt
+        FROM products
+        WHERE product_id = #{productId}
+    </select>
+
+    <!-- 상품 추가 -->
+    <insert id="insert" parameterType="com.kimkeyring.entity.Product">
+        INSERT INTO products (name, description, price, stock, image_url, created_at)
+        VALUES (#{name}, #{description}, #{price}, #{stock}, #{imageUrl}, NOW())
+    </insert>
+
+    <!-- 상품 수정 -->
+    <update id="update" parameterType="com.kimkeyring.entity.Product">
+        UPDATE products
+        SET
+            name = #{name},
+            description = #{description},
+            price = #{price},
+            stock = #{stock},
+            image_url = #{imageUrl},
+        WHERE product_id = #{productId}
+    </update>
+
+    <!-- 상품 삭제 -->
+    <delete id="delete">
+        DELETE FROM products
+        WHERE product_id = #{productId}
+    </delete>
+
 </mapper>
