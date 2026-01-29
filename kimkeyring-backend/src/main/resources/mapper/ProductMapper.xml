@@ -46,7 +46,7 @@
             description = #{description},
             price = #{price},
             stock = #{stock},
-            image_url = #{imageUrl},
+            image_url = #{imageUrl}
         WHERE product_id = #{productId}
     </update>
 

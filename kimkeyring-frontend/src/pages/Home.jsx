@@ -1,20 +1,29 @@
-import { useNavigate } from "react-router-dom"
+import { data, useNavigate } from "react-router-dom"
 import Header from "../components/Header"
 import ProductCard from "../components/ProductCard"
 import Footer from "../components/Footer"
+import { useEffect, useState } from "react"
 
 function Home() {
   const navigate = useNavigate()
+  const [products, setProducts] = useState([])
 
-  // 가짜 데이터 (나중에 API로 교체!)
-  const products = [
-    {id: 1, name: '곰돌이 키링', price: 12000, emoji: '🧸'},
-    {id: 2, name: '별똥별 키링', price: 9000, emoji: '⭐'},
-    {id: 3, name: '하트 키링', price: 8000, emoji: '💖'},
-    {id: 4, name: '구름 키링', price: 10000, emoji: '☁️'},
-    {id: 5, name: '달 키링', price: 11000, emoji: '🌙'},
-    {id: 6, name: '꽃 키링', price: 9500, emoji: '🌸'},
-  ]
+  // 백엔드 API에서 상품 데이터 가져오기
+  useEffect(() => {
+    fetch('http://localhost:8080/api/products')
+      .then(res => res.json())
+      .then(data => {
+        // DB 데이터를 Frontend 형식에 맞게 변환
+        const formattedProducts = data.map(product => ({
+          id: product.productId,
+          name: product.name,
+          price: product.price,
+          emoji: product.imageUrl
+        }))
+        setProducts(formattedProducts)
+      })
+      .catch(error => console.error('상품 조회 실패:', error))
+  }, [])
 
   return (
     <div>
