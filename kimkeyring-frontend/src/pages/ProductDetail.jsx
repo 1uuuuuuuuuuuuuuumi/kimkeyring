@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Header from '../components/Header'
 import { useCart } from "../context/CartContext";
@@ -8,17 +9,34 @@ function ProductDetail()  {
   const navigate = useNavigate()
   const {addToCart} = useCart()
 
-  // 더미 상품 데이터
-  const products = [
-    {id: 1, name: '곰돌이 키링', price: 12000, emoji: '🧸', description: '귀여운 곰돌이 키링입니다. 가방이나 파우치에 달아보세요!'},
-    {id: 2, name: '별똥별 키링', price: 9000, emoji: '⭐', description: '반짝이는 별똥별 키링! 소원을 빌어보세요.'},
-    {id: 3, name: '하트 키링', price: 8000, emoji: '💖', description: '사랑스러운 핑크 하트 키링입니다.'},
-    {id: 4, name: '구름 키링', price: 10000, emoji: '☁️', description: '폭닥폭닥 포근한 구름 모양의 키링입니다.'},
-    {id: 5, name: '달 키링', price: 11000, emoji: '🌙', description: '신비로운 달 키링입니다.'},
-    {id: 6, name: '꽃 키링', price: 9500, emoji: '🌸', description: '예쁜 벚꽃 키링입니다. 봄에 찰떡!!'},
-  ]
+  const [product, setProduct] = useState(null)
+  const [loading, setLoading] = useState(true)
 
-  const product = products.find(p => p.id === parseInt(id))
+  // 백엔드 API에서 상품 데이터 가져오기
+  useEffect(() => {
+    fetch(`http://localhost:8080/api/products/${id}`)
+      .then(res => res.json())
+      .then(data => {
+        // DB 데이터를 프론트 형식에 맞게 변환
+        const formattedProduct = {
+          id: data.productId,
+          name: data.name,
+          price: data.price,
+          emoji: data.imageUrl,
+          description: data.description
+        }
+        setProduct(formattedProduct)
+        setLoading(false)
+      })
+      .catch(error => {
+        console.error('상품 조회 실패:', error)
+        setLoading(false)
+      })
+  }, [id])
+
+  if(loading){
+    return <div>로딩 중...</div>
+  }
 
   if(!product){
     return <div>상품을 찾을 수 없습니다.</div>
