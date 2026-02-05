@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kimkeyring.mapper.UserMapper">
+
+    <!-- 회원가입 -->
+    <insert id="insertUser" parameterType="com.kimkeyring.entity.User">
+        INSERT INTO users (email, password, name, phone, address, address_detail created_at)
+        VALUES (#{email}, #{password}, #{name}, #{phone}, #{address}, #{addressDetail}, NOW())
+    </insert>
+
+    <!-- 회원 ID로 조회 -->
+    <select id="findById" resultType="com.kimkeyring.entity.User">
+        SELECT
+            user_id AS userId,
+            email,
+            password,
+            name,
+            phone,
+            address,
+            address_detail AS addressDetail,
+            created_at AS createdAt
+        FROM users
+        WHERE user_id = #{userId}
+    </select>
+
+    <!-- 이메일로 조회 (로그인용) -->
+    <select id="findByEmail" resultType="com.kimkeyring.entity.User">
+        SELECT
+            user_id AS userId,
+            email,
+            password,
+            name,
+            phone,
+            address,
+            addressDetail AS addressDetail,
+            created_at AS createdAt
+        FROM users
+        WHERE email = #{email}
+    </select>
+
+    <!-- 회원 정보 수정 -->
+    <update id="updateUser" parameterType="com.kimkeyring.entity.User">
+        UPDATE users
+        SET
+            email = #{email},
+            password = #{password},
+            name = #{name},
+            phone = #{phone},
+            address = #{address},
+            address_detail = #{addressDetail},
+        WHERE user_id = #{userId}
+    </update>
+
+    <!-- 회원 탈퇴 -->
+    <delete id="deleteUser">
+        DELETE FROM users
+        WHERE user_id = #{userId}
+    </delete>
+
+</mapper>
