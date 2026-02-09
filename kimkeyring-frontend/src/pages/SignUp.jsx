@@ -228,6 +228,42 @@ function SignUp(){
             />
           </div>
 
+          <div style={{display: 'flex', gap: '12px', marginTop: '50px'}}>
+            <button
+              onClick={() => navigate('/')}
+              style={{
+                flex: 1,
+                padding: '16px',
+                fontSize: '18px',
+                fontWeight: 'bold',
+                backgroundColor: 'white',
+                color: '#666',
+                border: '2px solid #ddd',
+                borderRadius: '8px',
+                cursor: 'pointer'
+              }}
+            >
+              취소
+            </button>
+
+            <button
+              onClick={handleSubmit}
+              style={{
+                flex: 1,
+                padding: '16px',
+                fontSize: '18px',
+                fontWeight: 'bold',
+                backgroundColor: '#ff6b9d',
+                color: 'white',
+                border: 'none',
+                borderRadius: '8px',
+                cursor: 'pointer'
+              }}
+            >
+              회원가입
+            </button>
+          </div>
+
         </div>
       </main>
       <Footer />
