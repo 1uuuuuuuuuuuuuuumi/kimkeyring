@@ -5,6 +5,8 @@ import com.kimkeyring.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/api/users")
 @CrossOrigin(origins = "http://localhost:5173")
@@ -49,6 +51,23 @@ public class UserController {
     public String deleteUser(@PathVariable Long id){
         userService.deleteUser(id);
         return "회원 탈퇴가 완료되었습니다.";
+    }
+
+    // 로그인
+    // POST http://localhost:8080/api/users/login
+    @PostMapping("/login")
+    public User login(@RequestBody Map<String, String> loginData){
+        String email = loginData.get("email");
+        String password = loginData.get("password");
+
+        User user = userService.login(email, password);
+
+        if(user == null){
+            // 로그인 실패
+            throw new RuntimeException("이메일 또는 비밀번호가 올바르지 않습니다.");
+        }
+
+        return user;
     }
 
 }

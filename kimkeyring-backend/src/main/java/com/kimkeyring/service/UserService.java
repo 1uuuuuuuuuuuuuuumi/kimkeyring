@@ -30,12 +30,34 @@ public class UserService {
         userMapper.insertUser(user);
     }
 
-    // 회원 조회 (ID)
+    // 로그인
+    public User login(String email, String password){
+        // 1. 이메일로 사용자 찾기
+        User user = userMapper.findByEmail(email);
+
+        if (user == null){
+            // 사용자 없음
+            return null;
+        }
+
+        // 2. 비밀번호 확인
+        boolean isPasswordMatch = passwordEncoder.matches(password, user.getPassword());
+
+        if(!isPasswordMatch){
+            // 비밀번호 틀림
+            return null;
+        }
+
+        // 3. 로그인 성공 - 사용자 정보 반환
+        return user;
+    }
+
+    // 회원 조회 (회원번호로)
     public User getUserById(Long userId){
         return userMapper.findById(userId);
     }
 
-    // 회원 조회 (이메일) - 로그인용
+    // 회원 조회 (이메일로) - 로그인용
     public User getUserByEmail(String email){
         return userMapper.findByEmail(email);
     }
