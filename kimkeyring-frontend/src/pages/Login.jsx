@@ -156,7 +156,7 @@ function Login(){
 
           {/* 회원가입 링크 */}
           <div style={{textAlign: 'center', marginTop: '16px'}}>
-            <span style={{color: '#666'}}>아직 회원이 아니신가요?</span>
+            <span style={{color: '#666'}}>아직 회원이 아니신가요? </span>
             <span
               onClick={() => navigate('/signup')}
               style={{
