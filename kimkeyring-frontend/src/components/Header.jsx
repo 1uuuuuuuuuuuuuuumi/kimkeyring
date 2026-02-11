@@ -64,7 +64,7 @@ function Header() {
         </button>
 
         <button
-          onClick={() => alert('로그인 기능은 준비중입니다!')}
+          onClick={() => navigate('/login')}
           style={{
             padding: '8px 16px',
             cursor: 'pointer',
