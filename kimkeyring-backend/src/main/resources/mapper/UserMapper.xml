@@ -34,7 +34,7 @@
             name,
             phone,
             address,
-            addressDetail AS addressDetail,
+            address_detail AS addressDetail,
             created_at AS createdAt
         FROM users
         WHERE email = #{email}
@@ -49,7 +49,7 @@
             name = #{name},
             phone = #{phone},
             address = #{address},
-            address_detail = #{addressDetail},
+            address_detail = #{addressDetail}
         WHERE user_id = #{userId}
     </update>
 
