@@ -3,9 +3,11 @@ import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useState } from "react";
+import { useAuth } from "../context/AuthContext";
 
 function Login(){
   const navigate = useNavigate()
+  const {login} = useAuth()
 
   // 폼 데이터 상태
   const [formData, setFormData] = useState({
@@ -43,7 +45,8 @@ function Login(){
       console.log('로그인 성공:', response.data)
       alert(`${response.data.name}님 환영합니다!`)
 
-      // TODO: 로그인 상태 저장 (Context)
+      // Context에 로그인 상태 저장
+      login(response.data)
 
       navigate('/') // 메인 페이지로 이동
 
