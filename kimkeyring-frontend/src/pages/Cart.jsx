@@ -150,8 +150,9 @@ function Cart() {
                   {totalAmount.toLocaleString()}원
                 </span>
               </div>
+
               <button
-                onClick={() => alert('주문 기능은 준비중입니다!')}
+                onClick={() => navigate('/order')}
                 style={{
                   width: '100%',
                   padding: '16px',
