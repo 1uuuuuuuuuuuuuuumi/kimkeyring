@@ -15,7 +15,7 @@
             total_price,
             status,
             address,
-            addressDetail,
+            address_detail,
             created_at
         ) VALUES (
             #{userId},
