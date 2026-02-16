@@ -40,6 +40,11 @@ export function CartProvider({children}) {
     )
   }
 
+  // 장바구니 비우기
+  const clearCart = () => {
+    setCartItems([])
+  }
+
   // 총 금액 계산
   const totalAmount = cartItems.reduce((sum, item) =>
     sum + (item.price * item.quantity), 0
@@ -54,8 +59,9 @@ export function CartProvider({children}) {
       addToCart,
       removeFromCart,
       updateQuantity,
-      totalAmount,
-      totalItems
+      clearCart,
+      totalItems,
+      totalAmount
     }}>
       {children}
     </CartContext.Provider>
