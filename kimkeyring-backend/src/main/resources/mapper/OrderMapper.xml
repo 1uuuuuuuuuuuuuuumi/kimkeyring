@@ -43,4 +43,45 @@
         )
     </insert>
 
+    <!-- 특정 사용자의 모든 주문 조회 (최신순) -->
+    <select id="findByUserId" resultType="com.kimkeyring.entity.Order">
+        SELECT
+            order_id AS orderId,
+            user_id AS userId,
+            total_price AS totalPrice,
+            status,
+            address,
+            address_detail AS addressDetail,
+            created_at AS createdAt
+        FROM orders
+        WHERE user_id = #{userId}
+        ORDER BY created_at DESC
+    </select>
+
+    <!-- 주문 ID로 주문 상세 조회 -->
+    <select id="findById" resultType="com.kimkeyring.entity.Order">
+        SELECT
+            order_id AS orderId,
+            user_id AS userId,
+            total_price AS totalPrice,
+            status,
+            address,
+            address_detail AS addressDetail,
+            created_at AS createdAt
+        FROM orders
+        WHERE order_id = #{orderId}
+    </select>
+
+    <!-- 특정 주문의 주문 상품 목록 조회 -->
+    <select id="findItemsByOrderId" resultType="com.kimkeyring.entity.OrderItem">
+        SELECT
+            order_item_id AS orderItemId,
+            order_id AS orderId,
+            product_id AS productId,
+            quantity,
+            price
+        FROM order_items
+        WHERE order_id = #{orderId}
+    </select>
+
 </mapper>

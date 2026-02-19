@@ -56,4 +56,20 @@ public class OrderService {
             orderMapper.insertOrderItem(orderItem);
         }
     }
+
+    // 특정 사용자의 주문 목록 조회
+    public List<Order> getOrdersByUserId(Long userId){
+        return orderMapper.findByUserId(userId);
+    }
+
+    // 주문 상세 조회
+    public Order getOrderById(Long orderId){
+        return orderMapper.findById(orderId);
+    }
+
+    // 주문의 상품 목록 조회
+    public List<OrderItem> getOrderItems(Long orderId){
+        return orderMapper.findItemsByOrderId(orderId);
+    }
+
 }
