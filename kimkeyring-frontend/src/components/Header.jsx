@@ -57,6 +57,20 @@ function Header() {
               {user.name}님
             </span>
 
+            {/* 주문내역 버튼 */}
+            <button
+              onClick={() => navigate('/orders')}
+              style={{
+                padding: '8px 16px',
+                cursor: 'pointer',
+                backgroundColor: 'white',
+                border: '1px solid #ddd',
+                borderRadius: '4px'
+              }}
+            >
+              주문내역
+            </button>
+
             <button
               onClick={handleLogout}
               style={{

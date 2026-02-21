@@ -7,6 +7,7 @@ import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import { AuthProvider } from "./context/AuthContext";
 import Order from "./pages/Order";
+import OrderHistory from "./pages/OrderHistory";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="/signup" element={<SignUp />} />
             <Route path="/login" element={<Login />} />
             <Route path="/order" element={<Order />} />
+            <Route path="/orders" element={<OrderHistory />} />
           </Routes>
         </AuthProvider>
       </BrowserRouter>
