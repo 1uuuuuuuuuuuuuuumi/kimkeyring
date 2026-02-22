@@ -123,7 +123,7 @@
             oi.quantity,
             oi.price AS item_price,
             p.name AS product_name,
-            p.emoji AS product_image_url
+            p.image_url AS product_image_url
         FROM orders o
         LEFT JOIN order_items oi ON o.order_id = oi.order_id
         LEFT JOIN products p ON oi.product_id = p.product_id
