@@ -1,5 +1,6 @@
 package com.kimkeyring.service;
 
+import com.kimkeyring.dto.OrderHistoryDTO;
 import com.kimkeyring.entity.Order;
 import com.kimkeyring.entity.OrderItem;
 import com.kimkeyring.mapper.OrderMapper;
@@ -57,9 +58,9 @@ public class OrderService {
         }
     }
 
-    // 특정 사용자의 주문 목록 조회
-    public List<Order> getOrdersByUserId(Long userId){
-        return orderMapper.findByUserId(userId);
+    // 특정 사용자의 주문 목록 조회 (상품 정보 포함)
+    public List<OrderHistoryDTO> getOrderHistoryByUserId(Long userId){
+        return orderMapper.findOrderHistoryByUserId(userId);
     }
 
     // 주문 상세 조회

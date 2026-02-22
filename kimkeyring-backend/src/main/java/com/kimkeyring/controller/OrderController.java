@@ -1,5 +1,6 @@
 package com.kimkeyring.controller;
 
+import com.kimkeyring.dto.OrderHistoryDTO;
 import com.kimkeyring.entity.Order;
 import com.kimkeyring.entity.OrderItem;
 import com.kimkeyring.service.OrderService;
@@ -29,11 +30,11 @@ public class OrderController {
         return "주문이 완료되었습니다.";
     }
 
-    // 내 주문 목록 조회
+    // 내 주문 목록 조회 (상품 정보 포함)
     // GET http://localhost:8080/api/orders?userId=2
     @GetMapping
-    public List<Order> getMyOrders(@RequestParam Long userId){
-        return orderService.getOrdersByUserId(userId);
+    public List<OrderHistoryDTO> getMyOrders(@RequestParam Long userId){
+        return orderService.getOrderHistoryByUserId(userId);
     }
 
     // 주문 상세 조회
