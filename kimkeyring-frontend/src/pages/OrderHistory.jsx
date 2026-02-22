@@ -170,6 +170,48 @@ function OrderHistory() {
                   </p>
                 </div>
 
+                {/* 주문 상품 목록 */}
+                <div style={{marginBottom: '16px', paddingBottom: '16px', borderBottom: '1px solid #eee'}}>
+                  <p style={{fontSize: '14px', color: '#666', marginBottom: '12px'}}>
+                    주문 상품
+                  </p>
+                  {order.items && order.items.map(item => (
+                    <div
+                      key={item.orderItemId}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        padding: '8px',
+                        backgroundColor: '#f9f9f9',
+                        borderRadius: '4px',
+                        marginBottom: '8px'
+                      }}
+                    >
+                      <img
+                        src={item.productImageUrl}
+                        alt={item.productName}
+                        style={{
+                          width: '50px',
+                          height: '50px',
+                          borderRadius: '4px',
+                          marginRight: '12px'
+                        }}
+                      />
+                      <div style={{flex: 1}}>
+                        <p style={{fontWeight: 'bold', marginBottom: '4px'}}>
+                          {item.productName}
+                        </p>
+                        <p style={{fontSize: '14px', color: '#666'}}>
+                          {item.price.toLocaleString()}원 x {item.quantity}개
+                        </p>
+                      </div>
+                      <span style={{fontWeight: 'bold'}}>
+                        {(item.price * item.quantity).toLocaleString()}원
+                      </span>
+                    </div>
+                  ))}
+                </div>
+
                 {/* 결제 금액 */}
                 <div
                   style={{
